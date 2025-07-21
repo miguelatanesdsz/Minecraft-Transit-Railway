@@ -57,8 +57,13 @@ public class BuildTools {
 	private static final long CROWDIN_PROJECT_ID = 455212;
 
 	public BuildTools(String minecraftVersion, String loader, Project project) throws IOException {
-		this.minecraftVersion = minecraftVersion;
-		this.loader = loader;
+    		// Hack para suportar 1.20.7 reaproveitando dependências de 1.20.4
+    		if (minecraftVersion.equals("1.20.7")) {
+        	minecraftVersion = "1.20.4";
+    		}
+
+    		this.minecraftVersion = minecraftVersion;
+    		this.loader = loader;
 		path = project.getProjectDir().toPath();
 		version = project.getVersion().toString();
 		majorVersion = Integer.parseInt(minecraftVersion.split("\\.")[1]);
